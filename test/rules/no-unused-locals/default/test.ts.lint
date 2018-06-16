@@ -23,6 +23,19 @@ var f, g
 interface INotUsed {}
           ~~~~~~~~ ['INotUsed' is declared but never used.]
 
+// Unused parameters are errors too
+function ff(n: number) {
+            ~ ['n' is declared but its value is never read.]
+}
+ff(2)
+
+export class Bar {
+  // 6138
+  constructor(private n: number) {
+                      ~ [Property 'n' is declared but its value is never read.]
+  }
+}
+
 // Valid cases
 const h = 1
 console.log(h)
@@ -36,8 +49,3 @@ export interface IUsed {}
 var k, l
 console.log(k, l)
 
-// Allow unused parameters with this rule
-export class Bar {
-  constructor(private n: number) {
-  }
-}

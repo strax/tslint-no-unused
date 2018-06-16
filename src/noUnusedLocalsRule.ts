@@ -36,6 +36,7 @@ export class Rule extends Lint.Rules.TypedRule {
           // See https://github.com/Microsoft/TypeScript/blob/v2.9.2/src/compiler/diagnosticMessages.json
           // for error code descriptions
           diag.code === 6133 ||
+          diag.code === 6138 ||
           diag.code === 6192 ||
           diag.code === 6196 ||
           diag.code === 6198 ||
