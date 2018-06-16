@@ -4,6 +4,12 @@
   "description": "Rules for detecting unused locals and function parameters for TS 2.9+",
   "main": "tslint-no-unused.json",
   "author": "Sami Kukkonen <sami@samikukkonen.fi>",
+  "homepage": "https://github.com/strax/tslint-no-unused",
+  "bugs": "https://github.com/strax/tslint-no-unused/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/strax/tslint-no-unused"
+  },
   "license": "MIT",
   "scripts": {
     "clean": "rm -rf dist",
