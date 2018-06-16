@@ -1,6 +1,6 @@
 {
   "name": "tslint-no-unused",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Rules for detecting unused locals and function parameters for TS 2.9+",
   "main": "tslint-no-unused.json",
   "author": "Sami Kukkonen <sami@samikukkonen.fi>",
