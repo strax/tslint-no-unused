@@ -1,5 +1,7 @@
 # tslint-no-unused
 
+[![Build Status](https://travis-ci.com/strax/tslint-no-unused.svg?branch=master)](https://travis-ci.com/strax/tslint-no-unused)
+
 A [TSLint](https://palantir.github.io/tslint) rule to make unused locals and properties lint errors.
 
 This rule essentially acts like TypeScript's `noUnusedLocals` and `noUnusedProperties` combined, except that by using TSLint
