@@ -14,7 +14,7 @@
   "scripts": {
     "clean": "rm -rf dist",
     "build": "npm run -s clean && tsc",
-    "test": "npm run -s build && tslint -r ./dist --test test/rules/*/*",
+    "test": "tslint -r ./dist --test test/rules/*/*",
     "prepublishOnly": "npm run -s build"
   },
   "peerDependencies": {
@@ -23,6 +23,7 @@
   },
   "devDependencies": {
     "@types/node": "^10.3.3",
+    "ts-node": "^7.0.0",
     "tslint": "^5.10.0",
     "typescript": "^2.9.2"
   }
