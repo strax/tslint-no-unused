@@ -1,7 +1,35 @@
 import ts from "typescript"
 import * as Lint from "tslint"
+import * as path from "path"
 
-export class Rule extends Lint.Rules.TypedRule {
+class LintLanguageServiceHost implements ts.LanguageServiceHost {
+
+  constructor(private sourceFile: ts.SourceFile) {
+  }
+
+  getScriptFileNames() {
+    return [this.sourceFile.fileName]
+  }
+
+  getCompilationSettings() {
+    return {}
+  }
+
+  getScriptVersion(fileName: string): string {
+    return "0"
+  }
+  getScriptSnapshot(fileName: string): ts.IScriptSnapshot {
+    return ts.ScriptSnapshot.fromString(this.sourceFile.text)
+  }
+  getCurrentDirectory(): string {
+    return path.relative(process.cwd(), this.sourceFile.fileName)
+  }
+  getDefaultLibFileName(options: ts.CompilerOptions): string {
+    return ""
+  }
+}
+
+export class Rule extends Lint.Rules.AbstractRule {
   private parseDiagnosticMessage(message: string | ts.DiagnosticMessageChain) {
     if (typeof message !== "string") {
       return message.messageText
@@ -23,13 +51,11 @@ export class Rule extends Lint.Rules.TypedRule {
     )
   }
 
-  applyWithProgram(
+  apply(
     sourceFile: ts.SourceFile,
-    program: ts.Program
   ): Lint.RuleFailure[] {
-    const diagnostics = program
-      .getDiagnosticsProducingTypeChecker()
-      .getSuggestionDiagnostics(sourceFile)
+    const service = ts.createLanguageService(new LintLanguageServiceHost(sourceFile))
+    const diagnostics = service.getSuggestionDiagnostics(sourceFile.fileName)
     return diagnostics
       .filter(diag => {
         return (
